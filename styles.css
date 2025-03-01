@@ -1,0 +1,495 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Genel Stil */
+body {
+    font-size: 90%; /* Tüm metin boyutlarını %10 küçült */
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', serif;
+    background-color: #00024a; /* Arka plan rengi */
+}
+
+/* telefon üçün */
+.menu-toggle {
+    display: none; /* Varsayılan olarak gizle */
+    grid-template-columns: repeat(auto-fit  minmax(250px, 1fr));
+    grid-gap: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+/* Navigasyon Çubuğu */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 70px;
+    background-color: #757575; /* Menü arka planı */
+    background-image: url(logo_icon/nav-bg.png); /* Menü arka planı görseli */
+    background-size: 100%; /* Menü arka planı */
+    border-radius: 11px; /* Kenarları oval yap */
+}
+
+/* bura yazı və logonun olduğu hissədir */
+.logo img {
+    height: 50px; /* Logonun yüksekliğini ayarlayın */
+    width: auto;  /* Genişliğin otomatik olarak ayarlanmasını sağlar */
+    vertical-align: middle; /* Logonun metinle aynı hizaya gelmesini sağlar */
+    margin-right: 20px; /* Logonun metinden biraz uzaklaşmasını sağlar */
+}
+
+.no-color-change {
+    color: inherit; /* Rengi üst elementten miras al */
+    text-decoration: none; /* Alt çizgiyi kaldır */
+}
+
+.no-color-change:hover,
+.no-color-change:focus,
+.no-color-change:active {
+    color: inherit; /* Hover, focus veya aktif durumda rengin değişmemesini sağla */
+    text-decoration: none; /* Hover, focus veya aktif durumda alt çizginin görünmemesini sağla */
+}
+
+/* Logo ve yazı (navigasyon bölümü)*/
+.logo {
+    display: flex;
+    align-items: center; /* Logoyu ve metni aynı hizaya getirir */
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Menü Linkleri */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 65px;
+    align-items: center; /* Dikey hizalamayı iyileştirdim */
+    margin-right: -10px; /* Menü öğelerini sağa kaydır */
+    padding: 10px 20px; /* Kapsayıcı içindeki boşluk */
+    border-radius: 200px; /* Kenarları oval yap */
+    background-color: #ffffff0b; /* Arka plan rengi */
+    border: 2px solid #757575; /* Kenarlık rengi */
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-size: 23px;
+    color: #757575;
+    transition: color 0.3s ease, border 0.3s ease;
+    border: 2px solid transparent; /* Kenarlık başlangıçta görünmez */
+    padding: 5px 12px; /* Kenarlık ile metin arasındaki boşluk */
+    border-radius: 55px; /* Kenarları oval yap */
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+}
+
+/* Hero bölümü (ortadaki video ve yazılar olan kısım)*/
+.hero {
+    position: relative;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    overflow: hidden; /* Taşmaları önlemek için */
+    border-radius: 20px; /* Kenarları oval yap */
+}
+
+/* Video ayarları */
+#hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Videoyu kırpmadan tam ekran doldur */
+    transform: translate(-50%, -50%);
+    z-index: -1; /* Videonun arka planda kalmasını sağlar */
+    border-radius: 18px; /* Kenarları oval yap */
+}
+
+/* Karanlık katman (görünürlüğü artırmak için) */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Karanlık efekt */
+    z-index: 0; /* Videonun üstünde ama yazının altında */
+}
+
+/* Yazılar */
+.hero-content {
+    position: relative;
+    z-index: 1; /* Yazıları en üste çıkar */
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Syne', serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: #6F8B96;
+    text-transform: uppercase;
+    line-height: 1.8em;
+    letter-spacing: -0.009em;
+}
+
+/* Başlık */
+h1 {
+    font-size: 2.88rem;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Dekorlar yazısı */
+.section {
+    font-size: 1.5rem; /* Yazı boyutunu büyüt */
+    font-family: 'Syne', serif; /* Yazı tipini değiştir */
+    padding: 2rem 2rem; /* Yazıyla yukarıdaki görsele aralığı */
+    color: #41596a; /* Yazı rengi */
+    font-weight: bold; /* Yazıyı kalın yap */
+    text-align: center;
+    margin-bottom: 0.1rem; /* Alt boşluk ekle */
+}
+
+.məqalələr {
+    font-size: 1.5rem; /* Yazı boyutunu büyüt */
+    font-family: 'Syne', serif; /* Yazı tipini değiştir */
+    padding: 2rem 2rem; /* Yazıyla yukarıdaki görsele aralığı */
+    color: #2c404f; /* Yazı rengi */
+    font-weight: bold; /* Yazıyı kalın yap */
+    text-align: center;
+    margin-bottom: 0.1rem; /* Alt boşluk ekle */
+}
+
+.haqqımda {
+    font-size: 1.5rem; /* Yazı boyutunu büyüt */
+    font-family: 'Syne', serif; /* Yazı tipini değiştir */
+    padding: 2rem 2rem; /* Yazıyla yukarıdaki görsele aralığı */
+    color: #41596a; /* Yazı rengi */
+    font-weight: bold; /* Yazıyı kalın yap */
+    text-align: center;
+    margin-bottom: 0.1rem; /* Alt boşluk ekle */
+    max-width: 800px; /* Bölümün maksimum genişliğini belirler */
+    margin: 0 auto; /* Yatayda ortala */
+}
+
+.product-grid, .services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5rem;
+    justify-content: center;
+}
+
+/* Məqalələrim bölməsi */
+.product-item, .service-item {
+    font-size: 1.5rem; /* Məqalələrin Yazı boyutu */
+    background: #ffffff59;
+    padding: 0.8rem; /* Məqalələridəki kenarlıklar */
+    border-radius: 12px; /* Məqalələridəki kenarlıkların oval olması */
+    box-shadow: 0 2px 5px #0000001a;
+    transition: transform 0.4s;
+    margin-top: 3rem; /* Məqalələrin üst boşluğu */
+}
+
+.product-item, p {
+    margin-top: 5px;
+}
+
+.məqalə-video {
+    border-radius: 12px; /* Köşeleri oval yapar */
+    overflow: hidden; /* Taşmaları önler */
+    margin: 0 auto; /* Yatayda ortala */
+    object-fit: cover; /* Videonun içeriğini korur ve taşmayı önler */
+    width: 100%; /* Çerçeve içinde tam oturmasını sağlar */
+}
+
+.product-item, product-item font {
+    font-size: 1.5rem; /* Məqalələrdəki Yazı boyutu */
+    max-width: 350px; /* Məqalələrin maksimum genişliği */
+    background: #ffffff59;
+    padding: 0.8rem; /* Məqalələrdəki kenarlıklar */
+    border-radius: 12px; /* Məqalələrdəki kenarlıkların oval olması */
+    box-shadow: 0 2px 5px #0000001a;
+    transition: transform 0.4s;
+    margin-top: 2rem; /* Məqalələrin üst boşluğu */
+}
+
+/* Məqalələr */
+.product-item img, .service-item img {
+    width: 333px; /* ürünlerin genişlik */
+    height: 333px; /* ürünlerin yükseklik */
+    border-radius: 10px;
+    object-fit: cover; /* Görüntünün kesilmesini önler */
+    cursor: pointer; /* Fare ikonunu değiştirir */
+    max-width: 100%; /* Ekrandan taşmayı önler */
+    max-height: 100%; /* Ekrandan taşmayı önler */
+}
+
+button {
+    padding: 0.45rem 0.9rem;
+    font-size: 70%; /* Buton metin boyutunu %10 küçült */
+    border: none;
+    border-radius: 5px;
+    background: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Mail ve telefon numarası linkleri için stil */
+.contact-info a {
+    color: #575757; /* İstediğiniz rengi buraya yazın */
+    text-decoration: none; /* Alt çizgiyi kaldır */
+    transition: color 0.3s ease; /* Geçiş efekti */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+form input, form textarea {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* İkonların kapsayıcı kutusu */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px; /* Üstten boşluk ekle */
+    margin-bottom: 20px; /* Alt boşluk ekle */
+}
+
+/* İkonların kutusu */
+.icon {
+    position: relative;
+    width: 45px; /* İkon kutusu genişliği boyutu */
+    height: 45px; /* İkon kutusu yüksekliği boyutu */
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Efekt için arka plan (ilk başta görünmez) */
+.icon::before {
+    content: "";
+    position: absolute;
+    background: black;
+    width: 130%;
+    height: 130%;
+    left: -110%;
+    top: 80%;
+    transform: rotate(45deg);
+    transition: 0.7s;
+}
+
+/* İkonun kendisi */
+.icon i {
+    font-size: 24px; /* İkon boyutu */
+    color: #30c4a3;
+    transition: 0.3s;
+    position: relative;
+    z-index: 2;
+}
+
+/* Hover efekti (Arka plan büyüyor ve ikon rengi değişiyor) */
+.icon:hover::before {
+    left: -15%;
+    top: -15%;
+}
+
+.icon:hover i {
+    color: white;
+    transform: scale(1.2);
+}
+
+/* Telefon üçün ayarlar */
+@media only screen and (max-width: 600px) {
+    * {
+        font-size: 80%; /* Tüm metin boyutlarını %20 küçült */
+    }
+
+    .haqqımda {
+        font-size: 1.8rem; /* Yazı boyutunu küçült */
+    }
+
+    .navbar {
+        flex-direction: column; /* Menü öğelerini alt alta getir */
+        align-items: center;
+    }
+
+    .nav-links {
+        display: none; /* Varsayılan olarak menüyü gizle */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: #000157; /* Menü arka plan rengi */
+        background-image: url(logo_icon/nav-media.png); /* Menü arka planı görseli */
+        position: absolute;
+        top: 80px; /* Menü butonunun altında görünecek şekilde ayarlayın */
+        left: 0;
+        z-index: 1000; /* Diğer içeriklerin üzerinde görünecek */
+        padding: 10px 0; /* Menü öğeleri arasındaki boşluğu ayarla */
+    }
+
+    .nav-links li {
+        margin: 1px 0; /* Her bir menü öğesi arasındaki boşluk */
+    }
+    
+    .nav-links a {
+        padding: 2px 6px; /* Butonların iç boşluğu */
+        display: block;
+        color: #ffffff; /* Link rengi */
+        text-decoration: none;
+        font-size: 18px; /* Yazı boyutu */
+        transition: background-color 0.3s ease, color 0.3s ease; /* Geçiş efekti */
+    }
+
+    .nav-links a:hover {
+        background-color: #455A64; /* Hover rengi */
+        color: #000000;
+    }
+
+    .nav-links.show {
+        display: flex; /* Açıldığında menüyü göster */
+        flex-direction: column; /* Dikey hizalama */
+        background-color: none; /* Arka plan rengi */
+    }
+    
+    .nav-links .book-now-btn {
+        margin: 5px auto; /* Rezervasyon butonunun üst ve alt boşluğu */
+        padding: 12px 28px; /* Buton iç boşluğu */
+        width: 50%; /* Genişlik */
+        background-color: #546E7A; /* Buton arka plan rengi */
+        color: #1F3A4D; /* Yazı rengi */
+        border-radius: 40px; /* Oval görünüm */
+        font-size: 18px;
+        font-style: bold; /* Kalın yazı */
+        transition: 0.3s ease;
+    }
+
+    .nav-links .book-now-btn:hover {
+        background-color: #455A64; /* Hover efekti */
+        color: #ffffff; /* Yazı rengini beyaz yapar */
+    }
+
+    .menu-toggle {
+        display: block; /* Menü butonunu göster */
+        background: none;
+        border: none;
+        font-size: 30px;
+        cursor: pointer;
+        color: #1F3A4D; /* Buton rengi */
+    }
+
+    /* Butonun aktif ve odak durumlarında stil */
+    .menu-toggle:active,
+    .menu-toggle:focus {
+        background-color: transparent; /* Arka plan rengini şeffaf yap */
+        outline: none; /* Odak çerçevesini kaldır */
+        color: #1F3A4D; /* Buton rengini koru */
+}
+
+    .product-grid {
+        grid-template-columns: 1fr; /* Ürünleri tek sütuna düşür */
+    }
+
+    .hero-content {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .section {
+        padding: 20px;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Arka plan fotoğraflarını üst üste koymak için düzenleme */
+#background-images {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Fotoğrafları içeriklerin arkasına yerleştirir */
+}
+
+/* Arka planda 3 fotoğrafı üst üste yerleştir */
+#background-images {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        url('logo_icon/arka2.png'),   /* 1. Fotoğraf */
+        url('logo_icon/arka-plan.svg'),   /* 2. Fotoğraf */
+        url('logo_icon/arka3.png');   /* 3. Fotoğraf */
+    background-position: center center, center center, center center; /* Her bir fotoğrafı ortalar */
+    background-size: cover, cover, cover; /* fotoğrafların boyutları */
+    background-repeat: no-repeat, no-repeat, no-repeat; /* Fotoğrafların tekrarlanmamasını sağlar */
+    z-index: -1; /* Fotoğrafların diğer içeriklerin arkasında görünmesini sağlar */
+}
+
+footer {
+    display: flex;
+    justify-content: space-between; /* Elemanları sağa ve sola ayırır */
+    align-items: center; /* Dikey hizalamayı yapar */
+    width: 100%;
+    color: #575757; /* Yazı rengi */
+    font-size: large;
+    padding: 10px 50px; /* İç boşluk ekledim */
+}
+.footer-sol  {
+    margin-left: 30px;
+    text-align: left;
+}
+
+.footer-sag {
+    margin-right: 30px;
+    text-align: right;
+}

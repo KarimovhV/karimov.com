@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WDS Configuration - Karimovh Vusal</title>
+    <link rel="icon" type="image/x-icon" href="../logo_icon/favicon.ico">
+    <link rel="stylesheet" href="məqalələr.css">
+    <script src="məqalələr.js" defer></script>
+</head>
+<body>
+    <!-- Arka plan fotoğrafları -->
+    <div id="background-images"></div>
+    <!-- Üst hissə (navigation) -->
+    <button class="menu-toggle">☰</button>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="../index.html" class="no-color-change">Karimovh Vusal</a>
+        </div>
+        <ul class="nav-links">
+            <a href="../index.html">Əsas Səhifə</a>
+            <a href="../Məqalələr/Məqalələr.html">Məqalələr</a>
+            <a href="../Haqqımda/haqqımda.html">Haqqımda</a>
+            <li><a href="#Əlaqə">Əlaqə</a></li>
+        </ul>
+    </nav>
+</head>
+<body>
+    <div class="container">
+        <h1>Windows Deployment Services (WDS) Qurulumu və Konfiqurasiyası</h1>
+        <p><strong>Windows Deployment Services (WDS)</strong>, əvvəlki <strong>Windows server</strong> ailələrində mövcud olan <strong>Remote Installation Services (RIS)</strong> xidmətinin təkmilləşdirilmiş bir versiyası olan və davamlı bir xidmət olaraq təqdim edilir. Bu xidmətin əsas funksiyası şəbəkə bağlantısı vasitəsilə kompüterlərə əməliyyat sistemlərinin qurulmalarını paylamaqdır.</p>
+        <img src="wds-photos/Win-Server.png" alt="Server Manager - Rol Əlavə Edilməsi" class="wsus-img">
+        
+        <h2>Windows Deployment Server Qurulumu və Konfiqurasiyası</h2>
+        <p>Birinci olaraq <strong>Windows server</strong>-də <strong>“Server Manager”</strong> bölməsinə girib sağ üstdə <strong>“Manage”</strong> bölməsində <strong>“Add Roles and Features”</strong> girib <strong>WDS Server</strong> Rolunu yükləyirik. Qeyd edim ki, <strong>DHCP</strong> server də lazımdır, ona görə onu da yükləyib konfiqurasiya edəcəyik.</p>
+        <img src="wds-photos/WDS-1.png" alt="Server Manager - Rol Əlavə Edilməsi" class="wsus-img">
+        
+        <p><strong>Role services</strong>-dən <strong>“Deployment Server”</strong> və <strong>“Transport Server”</strong> seçib yükləməyə davam edirik </p>
+        <img src="wds-photos/WDS-2.png" alt="WDS Server Rolu Seçilməsi" class="wsus-img">
+        
+        <h2>DHCP Server Konfiqurasiyası</h2>
+        <p><strong>İPv4</strong> sağ tık edib <strong>“New Scope”</strong> seçirik. 
+            Daha sonra <strong>Next</strong> deyib <strong>Scope</strong>-a ad veririk davam edib növbəti bölmədə <strong>İP</strong> aralığı verəciyik</p>
+        <img src="wds-photos/WDS-3.png" alt="DHCP Scope Təyin Edilməsi" class="wsus-img">
+
+        <p>Burda isə <strong>İP</strong> aralığı veririk. Bizim <strong>İP</strong> aralığımız <strong>192.168.74.1</strong>-dən başlayıb <strong>192.168.74.254</strong>-ə qədər olacaq.
+        Daha sonra verdiyimiz <strong>İP</strong> aralığından istəmədiyimiz <strong>İP</strong>-ləri çıxarda bilərik.</p>
+        <img src="wds-photos/WDS-4.png" alt="WDS Configure" width="400" height="400" class="wsus-img"><img src="wds-photos/WDS-5.png" alt="WDS Configure" width="400" height="400" class="wsus-img">
+        
+        <p>Burda cihazlara verilən <strong>İP</strong>-lərə icarə vaxtı təyin edirik mən <strong>8 saat</strong> təyin etdim. Daha sonra bizdən <strong>DHCP</strong> serverimizi indi konfiqurasiya etmək istədiyimizi soruşur <strong>“Yes”</strong> seçib davam edərək konfiqurasiya edirik</p>
+        <img src="wds-photos/WDS-6.png" alt="DHCP Server" width="400" height="400" class="wsus-img"><img src="wds-photos/WDS-7.png" alt="Boot Image" width="400" height="400" class="wsus-img">
+
+        <p><strong>Default gateway</strong> adresimizi yazıb əlavə edirik. Daha sonra <strong>DNS</strong> serverləri tandırıq serverin adını yazıb <strong>“Resolve”</strong> basdıqda sistem özü tanıya bilir və ya <strong>DNS</strong> Serverin <strong>İP</strong> adresinidə yaza bilərik.</p>
+        <img src="wds-photos/WDS-8.png" alt="Boot Image" width="400" height="400" class="wsus-img"><img src="wds-photos/WDS-9.png" alt="Boot Image" width="400" height="400" class="wsus-img">
+        
+        <p>Burda <strong>DNS</strong>-in köhnə versiyası olan <strong>NetBİOS</strong> serverlərinidə tanıda bilərik burdan. Amma <strong>NetBİOS</strong> hazırda istifadə olunmadığı üçün biz əlavə etməyib davam edəciyik.
+            Daha sonra bizdən bu <strong>Scope</strong>-u <strong>(Əhatə Dairəsi)</strong> indi aktiv etmək istəyib istəmədiyimizi soruşur <strong>Next</strong> basıb davam edirik.
+            <strong>Scope</strong> aktiv olduqda domaindəki user-lar <strong>İP</strong> adreslərini icarə olaraq alırlar. Aktivləşdirib <strong>DHCP Server</strong> Konfiqurasiyamızı bitiririk.</p>
+        <img src="wds-photos/WDS-10.png" alt="Boot Image Əlavə Edilməsi" width="400" height="400" class="wsus-img"><img src="wds-photos/WDS-11.png" alt="Boot Image Əlavə Edilməsi" width="400" height="400" class="wsus-img">
+        
+        <h2>WDS Service Konfiqurasiyası</h2>
+        <p><strong>Server Manager-dən “Tools”</strong> bölməsində <strong>“Windows Deployment Services”</strong> seçirik. Açılan ekranda <strong>“Servers”</strong> bölməsində domain adımızı görürük ona sağ tık edib <strong>“Configure Server”</strong> basırıq.
+            Açılan pəncərədə <strong>Next</strong> edib növbəti ekranda <strong>“İntegrated with Active Directory”</strong> seçirik yəniki <strong>AD DC-dən</strong> asılı olmağını ona uyğunlaşmasını istəyirik.</p>
+        <img src="wds-photos/WDS-12.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img"><img src="wds-photos/WDS-13.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img">
+        
+        <p>Burda ilk pəncərədə <strong>Remote İnstallation</strong>-un qurulacağı yeri göstərir. <strong>DHCP</strong> servisin olub olmadığını soruşur əgər <strong>DHCP</strong> servisi işləyirsə hər ikisini seçməyimizi deyir buranı Next basıb keçirik.</p>
+        <img src="wds-photos/WDS-14.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img"><img src="wds-photos/WDS-15.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img">
+        
+        <p>Burda <strong>PXE (Preboot Execution Environment)</strong> servisi hansı sistemlərə cavab verəcəyini seçməliyik.
+            <strong>”Respond to all client computers (known and unknown)”</strong> seçirik yəniki bütün bilinən və ya bilinməyən cihazlara cavab verməyini istəyirik. Next etdikdən sonra qurulum yüklənir və tamamlanır.</p>
+        <img src="wds-photos/WDS-16.png" alt="WDS Configure Server" class="wsus-img">
+
+        <p>İndi isə <strong>WDS</strong> Servisimizə  yükləmə diski əlavə edəcəyik.
+            Servisimizə disk əlavə etməzdən əvvəl <strong>İSO</strong> faylın içindəkiləri normal bir fayla çıxardırıq çünki standart bir <strong>İSO</strong> faylında <strong>“install.wim”</strong> faylı əvəzinə <strong>“install.esd”</strong> faylı var ki buda işimizə yaramayacaq çünki <strong>WDS Server</strong> sonluğu <strong>“.wim”</strong> olan faylı qəbul edir.</p>
+        <p><strong>cmd</strong>-ni administrator modda açırıq və <strong>“cd”</strong> commandı ilə yaratdığımız faylın içinə giririk daha sonra <strong>“dism /Get-WimInfo /WimFile:install.esd”</strong> commandını işlədərək <strong>“install.esd”</strong> faylının içində hansı windows versiyalarının olduğuna baxırıq</p>
+            <img src="wds-photos/WDS-17.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img"><img src="wds-photos/WDS-18.png" alt="WDS Configure Server" width="400" height="700" class="wsus-img">
+        
+        <p>Bizə <strong>Windows 10 Pro</strong> lazımdır ona görədə ondan bir <strong>wim</strong> faylı yaradacıyıq. Burda gördüyümüz kimi <strong>Windows 10 Pro</strong>-nun <strong>Index</strong> nömrəsi 6-dır. Commandımız aşağıdakı kimi olacaq və <strong>“install.wim”</strong> faylını yaradacıyıq.</p>
+        <p><strong>Command:</strong></p>
+        <p>dism /export-image /SourceImageFile:install.esd /SourceIndex:6 /DestinationImageFile:install.wim /Compress:max /CheckIntegrity</p>
+        <img src="wds-photos/WDS-19.png" alt="WDS Configure Server" width="550" height="550" class="wsus-img"><img src="wds-photos/WDS-20.png" alt="WDS Configure Server" width="400" height="550" class="wsus-img">
+        
+        <p><strong>WDS</strong> Servisdə <strong>“İnstall İmages”</strong> üstünə sağ tık edib <strong>“Add İnstall İmage”</strong> basırıq qarşımıza belə bir ekran çıxır burda <strong>İmage</strong>-ə ad verib <strong>Next</strong> basıb sonrakı mərhələyə keçirik.</p>
+        <img src="wds-photos/WDS-21.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img"><img src="wds-photos/WDS-22.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img">
+        
+        <p>Burda Windows 10 ISO faylımızın içindən <strong>“install.wim”</strong> faylını seçməliyik. İSO faylının içində <strong>“sources”</strong> qovluğundadır <strong>“install.wim”</strong> faylımız.
+            Növbəti bölmədə bizim qarşımıza Windows 10 Pro və Home versiyası çıxır. Mən əvvəlcədən Home versiyasınıda yükləmişdim deyə məndə var.
+            Daha sonra Next edərək davam edib yükləyirik.</p>
+        <p><strong>QEYD: bir install.wim faylının içinə istədiyimiz Windows versiyalarını yükləyə bilərik.</strong></p>
+        <img src="wds-photos/WDS-23.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img"><img src="wds-photos/WDS-24.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img">
+        
+        <p>Windows 10 image-ləri hazır olduğuna görə indi <strong>Boot</strong> İmages yükləməliyik. Sağ tık edib <strong>“Add Boot İmage”</strong> basırıq açılan pəncərədə <strong>“Browse”</strong>-a giririk və <strong>“boot.wim”</strong> faylını seçib <strong>“Open”</strong> basırıq.</p>
+        <img src="wds-photos/WDS-25.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img"><img src="wds-photos/WDS-26.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img">
+
+        <p>Burda <strong>İmage</strong>-ə ad verə bilərik <strong>“Next”</strong> deyirik növbəti bölmədə də <strong>“Next”</strong> deyirik və Boot image yüklənib hazır olur.</p>
+        <img src="wds-photos/WDS-27.png" alt="WDS Configure Server" width="350" height="350" class="wsus-img"><img src="wds-photos/WDS-28.png" alt="WDS Configure Server" width="350" height="350" class="wsus-img"><img src="wds-photos/WDS-29.png" alt="WDS Configure Server" width="350" height="350" class="wsus-img">
+        
+        <p><strong>WDS</strong>-in ayarlarına girib <strong>“Boot”</strong> bölməsindən Şəbəkədə <strong>PXE</strong> boot-un nə vaxt paylanacağını seçməliyik, burdan hər zaman başladılsını yəni <strong>"Always continue the PXE boot"</strong> seçimini seçirik. Daha sonra <strong>DHCP</strong> ayarlarından <strong>DHCP</strong> portlarını dinləmə seçimini aktiv edirik çünki bizim serverimizdə <strong>DHCP</strong> servisi var və onu ayrıca konfiqurasiya edəcəyik.</p>
+        <img src="wds-photos/WDS-30.png" alt="WDS Configure Server" width="450" height="450" class="wsus-img"><img src="wds-photos/WDS-31.png" alt="WDS Configure Server" width="330" height="330" class="wsus-img">
+
+        <p>Advanced hissəsində <strong>DHCP</strong>-də <strong>WDS</strong> serverin işləməsinə icazə veririk və <strong>WDS</strong> Serverimizdə işimiz bitti. İndi isə <strong>DHCP</strong> servisin konfigurasiyasına giririk. <strong>İPv4</strong> altında olan <strong>"Scope Options"</strong>-da sağ tık edib <strong>“Configure</strong> Options” seçirik.</p>
+        <img src="wds-photos/WDS-32.png" alt="WDS Configure Server" width="320" height="320" class="wsus-img"><img src="wds-photos/WDS-33.png" alt="WDS Configure Server" width="470" height="470" class="wsus-img">
+
+        <p>Burda 066 nömrəli olan <strong>“Boot Server Host Name”</strong> aktiv edib dəyər bölməsinə <strong>WDS</strong> Servisimizin hostaname-ni yazırıq. Daha sonra 067 nömrəli <strong>“Bootfile Name”</strong> olanı aktiv edib dəyər yerinə bu <strong>"boot\x64\wdsmgfw.efi"</strong> kodu yazırıq. Bu kod yaradacağımız əməliyyat sistemində x64 bitlik <strong>UEFİ</strong> boot sistemi üçündür aşağı hissədə başqa əməliyyat sistemləri üçün olan kodlarıda yazacam. Təbiiki də bunu <strong>BİOS</strong> boot olaraqda yarada bilərik ama köhnə tip sistemlər artıq çox nadir istifadə olunduğu üçün <strong>UEFİ</strong> ilə davam edəciyik. Artıq konfiqurasiyalarımız hazırdır əməliyyat sistemi olmayan bir sistemi şəbəkəyə bağlı şəkildə işə salıb çalışdığını görə bilərik.</p>
+        
+        <p  style="margin-top: 10px; margin-bottom: 10px;">
+            <span style="font-weight: bold;">x64 UEFİ üçün boot kod:</span> 
+            <span>boot\x64\wdsmgfw.efi</span>
+        </p>
+        <p  style="margin-top: 10px; margin-bottom: 10px;">
+            <span style="font-weight: bold;">x86 UEFİ üçün boot kod:</span> 
+            <span>boot\x86\wdsmgfw.efi</span>
+        </p>
+        <p  style="margin-top: 10px; margin-bottom: 10px;">
+            <span style="font-weight: bold;">x64 Legacy BİOS üçün boot kod:</span> 
+            <span>boot\x64\wdsnbp.com</span>
+        </p>
+        <p>
+            <span style="font-weight: bold;">x86 Legacy BİOS üçün boot kod:</span> 
+            <span>boot\x86\wdsnbp.com</span>
+        </p>
+        
+        <img src="wds-photos/WDS-34.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img"><img src="wds-photos/WDS-35.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img">
+
+        <p>Indi əməliyyat sistemi olmayan sadəcə domain ilə eyni şəbəkəyə bağlı olan bir sistemi çalıştıraq. Mən Virtual Maşında bunu etdiyim üçün belə bir bildiriş verir sistem. <strong>Yes</strong> deyib davam edirik. Və sistem avtomatik olaraq şəbəkə üzərindən əməliyyat sistemini qəbul etdi və yüklənməyə başladı</p>
+        <img src="wds-photos/WDS-36.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img"><img src="wds-photos/WDS-37.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img">
+
+        <p>Və gördüyümüz kimi sistem <strong>UEFİ Firmware interfeysi</strong> üzərindən yüklənərək <strong>Windows Setup</strong> pəncərəsi açıldı. <strong>Windows 10 Setup</strong> etmiyəcəm çünki əlavə olaraq boot yükləmələrini 2 tərəflidə yəni həm <strong>UEFİ</strong> həmdə <strong>BİOS</strong>-a uyğun edə bilərik yəni sistem özü algılayıb hansı boot sistemi ilə işləyirsə onu qəbul edəcək.</p>
+        <img src="wds-photos/WDS-38.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img"><img src="wds-photos/WDS-39.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img"><img src="wds-photos/WDS-40.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img">
+
+        <p>İndi hər iki <strong>Boot</strong> sistemi üçün konfiqurasiya edəciyik yəniki Kompüter hansı <strong>Firmware interfeysi</strong> ilə işləyirsə ona uyğun olaraq əməliyyat sistemi yükləyəcək. Əvvəlcə yaratdığımız hər iki konfiqurasiyanı silirik. Daha sonra <strong>İPv4</strong> üstünə sağ tık basıb <strong>“Define Vendor Classes”</strong> seçirik.</p>
+        <img src="wds-photos/WDS-41.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img"><img src="wds-photos/WDS-42.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img">
+        
+        <p>Burda <strong>“Add”</strong> butonuna basıb yaradacağımız konfiqurasiyaya ad veririk və önəmli olan yer <strong>ASCİİ</strong> kod yeridir bu hissəyə gəlib <strong>UEFİ</strong> üçün olan <strong>“PXEClient:Arch:00007”</strong> bu kodu yazırıq və <strong>OK</strong> deyib yadda saxlayırıq. Yenə <strong>“Add”</strong> basıb ad verəndən sonra bu səfər <strong>ASCİİ</strong> kod olaraq <strong>BİOS</strong> üçün olan <strong>“PXEClient:Arch:00000”</strong> bu kodu yazırıq və yadda saxlayırıq.</p>
+        <img src="wds-photos/WDS-43.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img"><img src="wds-photos/WDS-44.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img">
+
+        <p>Bu ekranda <strong>policy</strong> yaradıb ad veririk və <strong>Next</strong>-ə basırıq və <strong>Add</strong> butonuna basırıq</p>
+        <img src="wds-photos/WDS-45.png" alt="WDS Configure Server" width="260" height="250" class="wsus-img"><img src="wds-photos/WDS-46.png" alt="WDS Configure Server" width="330" height="330" class="wsus-img"><img src="wds-photos/WDS-47.png" alt="WDS Configure Server" width="330" height="330" class="wsus-img">
+
+        <p><strong>“Criteria”</strong> bölməsində <strong>“Vendor Class”</strong> seçirik <strong>“Value”</strong>də yaratdığımız <strong>“UEFİ Boot”</strong> seçirik və 2-ci boşluğa tik qoyub <strong>Add</strong> edirik. 2-ci hissədə bizdən <strong>İP</strong> aralığına görə olsunmu deyir <strong>“No”</strong> seçib davam edirik şəbəkədəki bütün cihazlara cavab verməsi üçün. Növbəti hissədə bayaqkı şəkildə <strong>WDS</strong> server adımızı və boot yükləmə faylını yazırıq və <strong>Next</strong> basıb <strong>Finish</strong> deyirik.</p>
+        <img src="wds-photos/WDS-48.png" alt="WDS Configure Server" width="350" height="350" class="wsus-img"><img src="wds-photos/WDS-49.png" alt="WDS Configure Server" width="350" height="350" class="wsus-img"><img src="wds-photos/WDS-50.png" alt="WDS Configure Server" width="350" height="350" class="wsus-img">
+        
+        <p>İndi isə <strong>BİOS Firmware interfeysi</strong> üçün eyni şəkildə <strong>policy</strong> yaradırıq.</p>
+
+        <p  style="margin-top: 10px; margin-bottom: 10px;">
+            <span style="font-weight: bold;">x64 Legacy BİOS üçün boot kodu:</span> 
+            <span>boot\x64\wdsnbp.com</span>
+        </p>
+        <p>
+            <span style="font-weight: bold;">x86 Legacy BİOS üçün boot kodu:</span> 
+            <span>boot\x86\wdsnbp.com</span>
+        </p>
+        
+        <img src="wds-photos/WDS-51.png" alt="WDS Configure Server" width="350" height="350" class="wsus-img"><img src="wds-photos/WDS-52.png" alt="WDS Configure Server" width="350" height="350" class="wsus-img"><img src="wds-photos/WDS-53.png" alt="WDS Configure Server" width="350" height="350" class="wsus-img">
+        
+        <p>Artıq <strong>policy</strong>-lərimiz hazırdır və cihazlar <strong>Boot Firmware interfeys</strong>-lərinə görə <strong>OS</strong> yükləyəcəklər bir daha yoxlaya bilərik.</p>
+        <img src="wds-photos/WDS-54.png" alt="WDS Configure Server" width="400" height="400" class="wsus-img">
+        
+        <h1>Nəticə</h1>
+        <p>Bu addımlarla, Windows Deployment Services (WDS) istifadə edərək şəbəkə üzərindən əməliyyat sisteminin boot edilməsini uğurla həyata keçirə bilərsiniz.</p>
+        <h2>Əlavə Sual və Məlumat üçün Aşağıdaki Media Vasitələri ilə Əlaqə Saxlaya Bilərsiniz.</h2>
+        <!-- Modal yapısı -->
+        <div id="myModal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="img01">
+            <div id="caption"></div>
+        </div>
+    </div>
+    </head>
+    <!-- Əlaqə və Sosial Medya Bölməsi -->
+    <section id="Əlaqə" class="section">
+        <h2>Əlaqə və Sosial media hesablarım:</h2>
+        <title>Sosyal Medya Hover Efekti</title>
+        <!-- Font Awesome bağlantısı -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <a href="tel:+994006845816" class="icon" target="_blank"><i class="fa-solid fa-phone" style="font-size: 28px;"></i></a>
+            <a href="mailto:karimovhvusal@gmail.com" class="icon" target="_blank"><i class="fa-solid fa-envelope" style="font-size: 28px;"></i></a>
+            <a href="https://www.instagram.com/_karimovh_846/" class="icon" target="_blank"><i class="fa-brands fa-instagram" style="font-size: 28px;"></i></a>
+            <a href="https://www.linkedin.com/in/vusal-karimovh" class="icon" target="_blank"><i class="fa-brands fa-linkedin-in" style="font-size: 28px;"></i></a>
+        </div>
+    </section>
+</body><footer><h3 class="footer-sol">2025 © Vüsal Kərimov.</h3><h3 class="footer-sag">Sayt Vüsal Kərimov Tərəfindən Hazırlanmışdır.</h3></footer>
+</html>
