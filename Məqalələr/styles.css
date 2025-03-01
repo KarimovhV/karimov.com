@@ -345,98 +345,109 @@ body {
 
 /* Telefon üçün ayarlar */
 @media only screen and (max-width: 600px) {
+    /* Genel ayarlar */
     * {
-        font-size: 80%; /* Tüm metin boyutlarını %20 küçült */
+        font-size: 90%; /* Tüm metin boyutlarının ayarı */
+        box-sizing: border-box; /* Taşmaları önlemek için */
     }
 
     .navbar {
-        flex-direction: column; /* Menü öğelerini alt alta getir */
+        flex-direction: column;
         align-items: center;
     }
 
     .nav-links {
-        display: none; /* Varsayılan olarak menüyü gizle */
+        display: none;
         flex-direction: column;
         width: 100%;
         text-align: center;
-        background-color: #000157; /* Menü arka plan rengi */
-        background-image: url(../logo_icon/nav-media.png); /* Menü arka planı görseli */
+        background-color: #000157;
+        background-image: url(../logo_icon/nav-media.png);
         position: absolute;
-        top: 80px; /* Menü butonunun altında görünecek şekilde ayarlayın */
+        top: 80px;
         left: 0;
-        z-index: 1000; /* Diğer içeriklerin üzerinde görünecek */
-        padding: 10px 0; /* Menü öğeleri arasındaki boşluğu ayarla */
-    }
-
-    .nav-links li {
-        margin: 1px 0; /* Her bir menü öğesi arasındaki boşluk */
-    }
-    
-    .nav-links a {
-        padding: 2px 6px; /* Butonların iç boşluğu */
-        display: block;
-        color: #ffffff; /* Link rengi */
-        text-decoration: none;
-        font-size: 18px; /* Yazı boyutu */
-        transition: background-color 0.3s ease, color 0.3s ease; /* Geçiş efekti */
-    }
-
-    .nav-links a:hover {
-        background-color: #455A64; /* Hover rengi */
-        color: #000000;
+        z-index: 1000;
+        padding: 10px 0;
     }
 
     .nav-links.show {
-        display: flex; /* Açıldığında menüyü göster */
-        flex-direction: column; /* Dikey hizalama */
-        background-color: none; /* Arka plan rengi */
-    }
-    
-    .nav-links .book-now-btn {
-        margin: 5px auto; /* Rezervasyon butonunun üst ve alt boşluğu */
-        padding: 12px 28px; /* Buton iç boşluğu */
-        width: 50%; /* Genişlik */
-        background-color: #546E7A; /* Buton arka plan rengi */
-        color: #1F3A4D; /* Yazı rengi */
-        border-radius: 40px; /* Oval görünüm */
-        font-size: 18px;
-        font-style: bold; /* Kalın yazı */
-        transition: 0.3s ease;
+        display: flex;
+        background-color: #000157; /* Geçerli bir arka plan rengi */
     }
 
-    .nav-links .book-now-btn:hover {
-        background-color: #455A64; /* Hover efekti */
-        color: #ffffff; /* Yazı rengini beyaz yapar */
+    .nav-links a {
+        padding: 2px 6px;
+        display: block;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 16px; /* Daha okunabilir bir boyuta düşürüldü */
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+        background-color: #455A64;
+        color: #000000;
     }
 
     .menu-toggle {
-        display: block; /* Menü butonunu göster */
+        display: block;
         background: none;
         border: none;
         font-size: 30px;
         cursor: pointer;
-        color: #1F3A4D; /* Buton rengi */
+        color: #1F3A4D;
     }
 
-    /* Butonun aktif ve odak durumlarında stil */
-    .menu-toggle:active,
-    .menu-toggle:focus {
-        background-color: transparent; /* Arka plan rengini şeffaf yap */
-        outline: none; /* Odak çerçevesini kaldır */
-        color: #1F3A4D; /* Buton rengini koru */
-}
-
     .product-grid {
-        grid-template-columns: 1fr; /* Ürünleri tek sütuna düşür */
+        grid-template-columns: 1fr; /* Tek sütun zaten tanımlı */
+        gap: 20px; /* Öğeler arası boşluk */
+        margin-top: 20px; /* Üstten boşluk ekleyerek yazılarla çakışmayı önle */
+    }
+
+    .product-item video {
+        width: 100%; /* Videoların taşmasını önler */
+        height: auto;
+    }
+
+    .product-item p {
+        font-size: 14px; /* Metin boyutunu küçült */
+        margin: 10px 0;
     }
 
     .hero-content {
         text-align: center;
         padding: 20px;
+        max-width: 100%;
+        overflow-x: hidden; /* Yatay taşmayı engelle */
+        overflow-y: auto; /* Dikeyde taşma olursa kaydırma çubuğu ekler */
+        min-height: 100%; /* İçeriğin tam görünmesi için minimum yükseklik */
+        position: relative; /* Video ile çakışmayı önlemek için */
+        z-index: 10; /* Yazıların videonun üstünde kalmasını sağlar */
     }
 
+    .hero-content h1 {
+        font-size: 24px; /* Mobil için uygun bir başlık boyutu */
+        margin: 20px 85px; /* Boşlukları düzenle */
+    }
+    
+    .hero-content h3 {
+        font-size: 16px; /* Daha okunabilir bir alt başlık boyutu */
+        line-height: 1; /* Satır aralığını artırarak okunurluğu iyileştir */
+        margin: 1px 0;
+    }
+    
+	#hero-video {
+        z-index: 1; /* Videonun yazının altında kalmasını sağlar */
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Videonun taşmasını önler */
+    }
     .section {
         padding: 20px;
+        max-width: 100%;
+        overflow-x: hidden;
+        z-index: 1;
     }
 
     img {
