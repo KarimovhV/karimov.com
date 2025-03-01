@@ -91,4 +91,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 300);
         }
     });
+    function resizeModalContent() {
+        if (modal.classList.contains('show')) {
+            modalContent.style.width = '80%';
+            modalContent.style.maxWidth = '700px';
+        }
+    }
+
+    window.addEventListener('resize', resizeModalContent);
+
+    // Modal açıldığında boyutlandırma işlevini çağır
+    modal.addEventListener('transitionend', function() {
+        if (modal.classList.contains('show')) {
+            resizeModalContent();
+        }
+    });
 });
