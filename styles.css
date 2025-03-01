@@ -366,7 +366,8 @@ form input, form textarea {
 /* Telefon üçün ayarlar */
 @media only screen and (max-width: 600px) {
     * {
-        font-size: 80%; /* Tüm metin boyutlarını %20 küçült */
+        font-size: 90%; /* Tüm metin boyutlarının ayarı */
+        box-sizing: border-box; /* Taşmaları önlemek için */
     }
 
     .haqqımda {
