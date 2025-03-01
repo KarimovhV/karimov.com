@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Poppins', serif;
 }
 
 /* Genel Stil */
@@ -39,14 +40,6 @@ body {
     border-radius: 11px; /* Kenarları oval yap */
 }
 
-/* bura yazı və logonun olduğu hissədir */
-.logo img {
-    height: 50px; /* Logonun yüksekliğini ayarlayın */
-    width: auto;  /* Genişliğin otomatik olarak ayarlanmasını sağlar */
-    vertical-align: middle; /* Logonun metinle aynı hizaya gelmesini sağlar */
-    margin-right: 20px; /* Logonun metinden biraz uzaklaşmasını sağlar */
-}
-
 .no-color-change {
     color: inherit; /* Rengi üst elementten miras al */
     text-decoration: none; /* Alt çizgiyi kaldır */
@@ -62,11 +55,34 @@ body {
 /* Logo ve yazı (navigasyon bölümü)*/
 .logo {
     display: flex;
-    align-items: center; /* Logoyu ve metni aynı hizaya getirir */
-    font-size: 32px;
-    font-weight: bold;
-    color: #ffffff;
-}
+    align-items: center;
+    color: #9a9a9a;
+  }
+  
+  .logo a {
+    font-size: 30px;
+    font-family: 'Syne', sans-serif; /* Yerel Syne fontunu kullan */
+    font-optical-sizing: auto;
+    font-weight: 700; /* Kalın (Bold) için */
+    font-style: normal;
+    color: #9a9a9a;
+    text-transform: uppercase;
+  }
+  
+  /* bura yazı və logonun olduğu hissədir */
+  .logo img {
+      height: 50px; /* Logonun yüksekliğini ayarlayın */
+      width: auto;  /* Genişliğin otomatik olarak ayarlanmasını sağlar */
+      vertical-align: middle; /* Logonun metinle aynı hizaya gelmesini sağlar */
+      margin-right: 20px; /* Logonun metinden biraz uzaklaşmasını sağlar */
+  }
+
+  @font-face {
+    font-family: 'Syne';
+    src: url('../logo_icon/Syne-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
 
 /* Menü Linkleri */
 .nav-links {
@@ -102,14 +118,16 @@ body {
 /* Hero bölümü (ortadaki video ve yazılar olan kısım)*/
 .hero {
     position: relative;
-    height: 80vh;
+    height: 100vh;
     display: flex;
+    flex-direction: column; /* İçeriği dikey olarak hizala */
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #fff;
+    color: #ffffff59;
     overflow: hidden; /* Taşmaları önlemek için */
     border-radius: 20px; /* Kenarları oval yap */
+    max-width: 1800px;
 }
 
 /* Video ayarları */
@@ -127,6 +145,8 @@ body {
 
 /* Karanlık katman (görünürlüğü artırmak için) */
 .hero::before {
+    display: flex;
+    flex-wrap: wrap;
     content: '';
     position: absolute;
     top: 0;
@@ -139,32 +159,44 @@ body {
 
 /* Yazılar */
 .hero-content {
-    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    position: center;
     z-index: 1; /* Yazıları en üste çıkar */
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
-    font-family: 'Syne', serif;
-    font-size: 30px;
-    font-weight: 400;
+    font-family: 'Poppins', serif;
+    font-weight: bold;
     color: #6F8B96;
     text-transform: none;
-    text-align: center;
     line-height: 1.8em;
     letter-spacing: -0.009em;
     max-width: 1100px;
-    flex-direction: column;
+    justify-items: center;
+    margin-bottom: 20px; /* Alt boşluk ekle */
 }
 
 .hero-content, .product-grid {
+    max-width: 1800px;
+    display: flex;
+    flex-wrap: wrap;
     position: relative; /* İçeriği videonun üstüne getirir */
     z-index: 1;
+    gap: 3rem;
 }
 
 /* Başlık */
 .hero-content h1 {
+    margin-left: 34rem;
     font-size: 2.88rem;
     text-transform: uppercase;
 }
+
+.hero-content h3 {
+    font-size: 25px;
+    margin-left: 10rem;
+    max-width: 1100px;
+} 
 
 @keyframes fadeIn {
     0% { opacity: 0; }
@@ -183,13 +215,16 @@ body {
 }
 
 .məqalələr {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5rem;
+    justify-content: center;
     font-size: 1.5rem; /* Yazı boyutunu büyüt */
     font-family: 'Syne', serif; /* Yazı tipini değiştir */
     padding: 2rem 2rem; /* Yazıyla yukarıdaki görsele aralığı */
     color: #2c404f; /* Yazı rengi */
     font-weight: bold; /* Yazıyı kalın yap */
     text-align: center;
-    margin-bottom: 0.1rem; /* Alt boşluk ekle */
 }
 
 .haqqımda {
@@ -206,35 +241,38 @@ body {
 
 .product-grid, .services-grid {
     display: flex;
-    flex-wrap: wrap;
-    gap: 5rem;
+    flex-grow: 1;
+    margin-left: 1px;
     justify-content: center;
 }
 
 /* Məqalələrim bölməsi */
 .product-item, .service-item {
+    display: flex;
+    flex-wrap: wrap;
     font-size: 1.5rem; /* Məqalələrin Yazı boyutu */
-    background: #ffffff59;
+    background: #ffffffa8;
     padding: 0.8rem; /* Məqalələridəki kenarlıklar */
     border-radius: 12px; /* Məqalələridəki kenarlıkların oval olması */
     box-shadow: 0 2px 5px #0000001a;
     transition: transform 0.4s;
-    margin-top: 3rem; /* Məqalələrin üst boşluğu */
-}
-
-.product-item, p {
-    margin-top: 5px;
+    margin-top: 1rem; /* Məqalələrin üst boşluğu */
 }
 
 .məqalə-video {
+    display: flex;
+    flex-wrap: wrap;
     border-radius: 12px; /* Köşeleri oval yapar */
     overflow: hidden; /* Taşmaları önler */
     margin: 0 auto; /* Yatayda ortala */
     object-fit: cover; /* Videonun içeriğini korur ve taşmayı önler */
     width: 100%; /* Çerçeve içinde tam oturmasını sağlar */
+    margin-bottom: 0.8rem;
 }
 
 .product-item, product-item font {
+    display: flex;
+    flex-wrap: wrap;
     font-size: 1.5rem; /* Məqalələrdəki Yazı boyutu */
     max-width: 350px; /* Məqalələrin maksimum genişliği */
     background: #ffffff59;
@@ -242,54 +280,8 @@ body {
     border-radius: 12px; /* Məqalələrdəki kenarlıkların oval olması */
     box-shadow: 0 2px 5px #0000001a;
     transition: transform 0.4s;
-    margin-top: 2rem; /* Məqalələrin üst boşluğu */
-}
-
-/* Məqalələr */
-.product-item img, .service-item img {
-    width: 333px; /* ürünlerin genişlik */
-    height: 333px; /* ürünlerin yükseklik */
-    border-radius: 10px;
-    object-fit: cover; /* Görüntünün kesilmesini önler */
-    cursor: pointer; /* Fare ikonunu değiştirir */
-    max-width: 100%; /* Ekrandan taşmayı önler */
-    max-height: 100%; /* Ekrandan taşmayı önler */
-}
-
-button {
-    padding: 0.45rem 0.9rem;
-    font-size: 70%; /* Buton metin boyutunu %10 küçült */
-    border: none;
-    border-radius: 5px;
-    background: #007bff;
-    color: #fff;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-button:hover {
-    background: #0056b3;
-}
-
-/* Mail ve telefon numarası linkleri için stil */
-.contact-info a {
-    color: #575757; /* İstediğiniz rengi buraya yazın */
-    text-decoration: none; /* Alt çizgiyi kaldır */
-    transition: color 0.3s ease; /* Geçiş efekti */
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-form input, form textarea {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    margin-top: 1rem; /* Məqalələrin üst boşluğu */
+    z-index: 1;
 }
 
 /* İkonların kapsayıcı kutusu */
@@ -453,19 +445,9 @@ form input, form textarea {
     }
 }
 
-/* Arka plan fotoğraflarını üst üste koymak için düzenleme */
-#background-images {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Fotoğrafları içeriklerin arkasına yerleştirir */
-}
-
 /* Arka planda 3 fotoğrafı üst üste yerleştir */
 #background-images {
-    position: fixed;
+    position:fixed ;
     top: 0;
     left: 0;
     width: 100%;
@@ -477,6 +459,7 @@ form input, form textarea {
     background-position: center center, center center, center center; /* Her bir fotoğrafı ortalar */
     background-size: cover, cover, cover; /* fotoğrafların boyutları */
     background-repeat: no-repeat, no-repeat, no-repeat; /* Fotoğrafların tekrarlanmamasını sağlar */
+    background-attachment: scroll; 
     z-index: -1; /* Fotoğrafların diğer içeriklerin arkasında görünmesini sağlar */
 }
 
