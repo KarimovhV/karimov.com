@@ -257,6 +257,8 @@ body {
 
 .modal.show .modal-content {
     transform: scale(1); /* Büyüt */
+    max-width: 15000px;
+    max-height: 15000px;
 }
 
 .close {
