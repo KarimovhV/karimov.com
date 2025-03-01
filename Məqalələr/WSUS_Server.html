@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WSUS Configuration - Karimovh Vusal</title>
+    <link rel="icon" type="image/x-icon" href="../logo_icon/favicon.ico">
+    <link rel="stylesheet" href="məqalələr.css">
+    <script src="məqalələr.js" defer></script>
+</head>
+<body>
+    <!-- Arka plan fotoğrafları -->
+    <div id="background-images"></div>
+    <!-- Üst hissə (navigation) -->
+    <button class="menu-toggle">☰</button>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="../index.html" class="no-color-change">Karimovh Vusal</a>
+        </div>
+        <ul class="nav-links">
+            <a href="../index.html">Əsas Səhifə</a>
+            <a href="../Məqalələr/Məqalələr.html">Məqalələr</a>
+            <a href="../Haqqımda/haqqımda.html">Haqqımda</a>
+            <li><a href="#Əlaqə">Əlaqə</a></li>
+        </ul>
+    </nav>
+</head>
+<body>
+    <div class="container">
+        <h1>Windows Server Update Services (WSUS) Qurulumu və Konfiqurasiyası</h1>
+        <h2>Windows Server Update Services nədir?</h2>
+        <p>  Əvvəllər Proqram Yeniləmə Xidmətləri (Server Update Service) kimi tanınan <strong>Windows Server Update Service</strong>, 
+            Microsoft Korporasiyası tərəfindən hazırlanmış və idarəçilərə Microsoft məhsulları üçün buraxılmış yeniləmələrin 
+            və düzəlişlərin korporativ mühitdə kompüterlərə paylanmasını idarə etməyə imkan verən kompüter proqramı və şəbəkə xidmətidir. 
+            <strong>Windows Server Update Services (WSUS) Windows server</strong>ləri, müştəri əməliyyat sistemləri (OS) və digər Microsoft proqram təminatı üçün yeniləmələri, 
+            xidmət paketlərini, patch-ləri və düzəlişləri planlaşdıra, idarə edə və yerləşdirə bilən <strong>Windows server</strong> roludur. Bu yanaşma yüksək sürətli <strong>LAN</strong> 
+            bağlantılarından daha yaxşı istifadə edir və ümumi internet istifadəsini azaldır.</p>
+        <img src="wds-photos/Win-Server.png" alt="WSUS Configure" class="wsus-img">
+        
+        <p>Birinci olaraq <strong>Windows server</strong>-də <strong>“Server Manager”</strong> bölməsinə girib sağ üstdə <strong>“Manage”</strong> 
+            bölməsində <strong>“Add Roles and Features”</strong> girib <strong>Windows Server Update Services</strong> seçirik. Yüklədiyimiz zaman sistem avtomatik olaraq 
+            <strong>“Web Server”</strong>də yüklənir. <strong>“Select Features”</strong> bölməsindən <strong>“BİTS”</strong> seçib install edirik.  </p>
+        <img src="wsus-photos/WSUS.png" alt="WSUS Configure" width="400" height="400" class="wsus-img"><img src="wsus-photos/WSUS-1.png" alt="WSUS Configure" width="480" height="480" class="wsus-img">
+
+        <p><strong>WSUS Service</strong> yükləndiktən sonra <strong>“Tools”</strong> bölməsindən <strong>WSUS Service</strong> seçib konfigurasiya etməyə başlayırıq. 
+            Burda Microsoftun yeniləmə təkmilləşdirmə proqramına qatılmağı istəyib istəmədiyimizi soruşur mən qutudakı tiki götürürəm çünki bu aktiv olsa bizdən datalar 
+            microsoft’a göndəriləcək buda əlavə resurs istifadə edir. İkinci şəkildə burda əgər bizim başqa <strong>WSUS Server</strong>imiz varsa onun adını və portunu yazmalıyıq 
+            əgər varsa yazın məndə yoxdur deyə Microsoft Update-in özündən update-ləri almağını seçirəm.</p>
+        <img src="wsus-photos/WSUS-2.png" alt="WSUS Configure" width="400" height="400" class="wsus-img"><img src="wsus-photos/WSUS-3.png" alt="WSUS Configure" width="400" height="400" class="wsus-img">
+
+        <p>Əgər bizim server yuxarı serverə daxil olmaq üçün <strong>proxy</strong> server tələb edirsə onu configure edə bilərik məndə <strong>proxy</strong> server olmadığı üçün Next deyib davam edirəm. 
+            <strong>“Start Connecting”</strong> deyərək <strong>Update servis</strong>lə əlaqə yaratmağa başlayırıq. Daha sonra <strong>connection</strong> olduqdan sonra <strong>Next</strong> basıb davam edirik</p>
+        <img src="wsus-photos/WSUS-4.png" alt="WSUS Configure" width="400" height="400" class="wsus-img"><img src="wsus-photos/WSUS-5.png" alt="WSUS Configure" width="400" height="400" class="wsus-img">
+        
+        <p><strong>Update</strong>-in hansı dilə uyğun olacağını soruşur İngilis dilini seçib davam edirik. Sonraki bölümdə hansı OS-ləri vəya proqram təminatlarına 
+            yükləmək istədiyimizi soruşur mən burda hələlik sadəcə <strong>“Windows 11”</strong> seçirəm.</p>
+        <img src="wsus-photos/WSUS-6.png" alt="WSUS Configure" width="500" height="400" class="wsus-img"><img src="wsus-photos/WSUS-7.png" alt="WSUS Configure" width="330" height="330" class="wsus-img">
+        
+        <p>Hansı <strong>update</strong>-ləri etmək istədiyimizi soruşur bura <strong>Driver</strong>-lar <strong>Update</strong>-lər <strong>Upgrade</strong>-lər və s. daxildir özümüzə lazım olanları seçib davam edirik. 
+            Növbəti olaraq <strong>update</strong>-lərin <strong>manual</strong> və ya <strong>avtomatik</strong> olacağını seçirik mən <strong>avtomatik</strong> olaraq hər axşam saat 9-da olmağını seçdim. 
+            Bunu manual-da etmək olar əgər bir server-də <strong>WSUS server</strong>inə daimi nəzarət edən biri varsa manual edilə bilər.</p>
+        <img src="wsus-photos/WSUS-8.png" alt="WSUS Configure" width="330" height="330" class="wsus-img"><img src="wsus-photos/WSUS-9.png" alt="WSUS Configure" width="500" height="500" class="wsus-img">
+        
+        <p>İlkin sinxronizasiya olunmağını seçirik və bizə deyirki seçdiyimiz servislərin, product-ların və s. sinxronizasiyasına olunmasını başladırıq. 
+            Sistemi tam konfiqurasiya etməyimiz üçün edilməsi gərəkənləri göstərir.</p>
+        <img src="wsus-photos/WSUS-10.png" alt="WSUS Configure" width="400" height="400" class="wsus-img"><img src="wsus-photos/WSUS-11.png" alt="WSUS Configure" width="400" height="400" class="wsus-img">
+        
+        <p><strong>WSUS Server</strong>in panelinə daxil olub <strong>“Synchronize Now”</strong> butonuna basırıq servisimizi seçdiyimiz <strong>update</strong>-lərlə sinxronizasiya etməsi üçün. <strong>Sinxronizasiya</strong> bitdikdən sonra. 
+            <strong>Domain</strong> olan <strong>Serverimizdə Users and Computers</strong>-ə girib yeni <strong>OU (Organizational Unit)</strong> yaradırıq və <strong>Client Userləri</strong> həmin <strong>Group</strong>-a əlavə edirik. 
+            Daha sonra <strong>Group Policy Managament</strong>-ə girib yaratdığımız qrup içərisində bir <strong>Policy</strong> yaradırıq və edit deyib dəyişiklikləri edəcəyik.</p>
+        <img src="wsus-photos/WSUS-12.png" alt="WSUS Configure" width="500" height="500" class="wsus-img"><img src="wsus-photos/WSUS-13.png" alt="WSUS Configure" width="350" height="350" class="wsus-img">
+        
+        <p><strong>“Computer Configuration > Policies > Administrative Templates > Windows Components > Windows Update”</strong> içərisindən <strong>“Configure Automatic Updates”</strong> 
+            ayarlarına girib <strong>“Enabled”</strong> edib  aşağıda göstərilənləri konfiqurasiya edirik. Mən <strong>4</strong> nömrəli olan <strong>avto updates</strong> seçirəm bu o deməkdirki <strong>“Avtomatik yükləmə 
+            və quraşdırmanı planlaşdırın”</strong> seçib saat olaraq hər axşam saat 9-da Update-lər yüklənib quraşdırılacaq. </p>
+        <img src="wsus-photos/WSUS-14.png" alt="WSUS Configure" width="550" height="550" class="wsus-img"><img src="wsus-photos/WSUS-15.png" alt="WSUS Configure" width="330" height="330" class="wsus-img">
+        
+        <p>Növbəti konfiqurasiya üçün <strong>WSUS Server</strong>-də <strong>“Server Manager”</strong> açıb server adına baxırıq <strong>“WSUS-Server.blueteam.local”</strong> olduğunu görürük 
+            (siz öz serverinizdə olanı yazacaqsanız). <strong>GPO-da “Windows Update”</strong> bölməsində <strong>“Specify intranet Microsoft update service location”</strong> açırıq 
+            <strong>Enable</strong> edirik və boşluqlara aşağıdakı kimi <strong>WSUS Serverimizi və portunu</strong> yazırıq. Daha sonra hər iki əməliyyat sistemində yəni həm client həm serverdə <strong>“gpupdate /force”</strong> 
+            commandını <strong>Powershell</strong>-də və ya <strong>CMD</strong>-də icra edirikki təyin etdiyimiz <strong>GPO</strong>-lar uyğulansın.</p>
+        <img src="wsus-photos/WSUS-16.png" alt="WSUS Configure" width="500" height="500" class="wsus-img"><img src="wsus-photos/WSUS-17.png" alt="WSUS Configure" width="550" height="550" class="wsus-img">
+        
+        <p>Burda <strong>Client-ların Windows Update</strong>, <strong>Microsoft Update</strong> və ya <strong>Windows Store</strong> kimi servislərdən cihazın <strong>update</strong> olunmamasını təmin etmək
+             üçün bu <strong>Policy</strong>-ni aktiv edirik. Yəniki bu <strong>policy</strong> aktiv olduqda <strong>domain</strong>-də olan cihazlar yalnız biz seçdiyimiz <strong>update servis</strong>-dən yəni 
+             <strong>WSUS Servisimizdən update</strong>-ləri alacaqlar. Yenidən həm Client-da həmdə serverlərdə Powershell-i admin kimi açaraq <strong>“gpupdate /force”</strong> commandını 
+             işlədərək bütün <strong>policy</strong>-lərin tətbiq olunmasını gerçəkləşdiririk</p>
+        <img src="wsus-photos/WSUS-18.png" alt="WSUS Configure" width="530" height="530" class="wsus-img"><img src="wsus-photos/WSUS-19.png" alt="WSUS Configure" width="530" height="530" class="wsus-img">
+        
+        <p><strong>Client</strong> sistemimizdə Powershell-i admin səviyyəsində açaraq <strong>“rsop.msc”</strong> commandını işlədirik və <strong>“Resultant Set of Policy”</strong> ekranı açılır 
+            burda hansı <strong>GPO-ların Client-a</strong> uyğulandığını görə bilirik. Daha sonra <strong>Client Sistemin</strong> özü özünü <strong>update</strong> edə bilirmi onu yoxlayaq. 
+            Yoxladıqdan sonra görürük ki <strong>Client</strong> cihaz özü özünü <strong>update</strong> edə bilmək icazəsi yoxdur yalnız <strong>WSUS Service-dən update</strong> edə bilərik.</p>
+        <img src="wsus-photos/WSUS-20.png" alt="WSUS Configure" width="450" height="450" class="wsus-img"><img src="wsus-photos/WSUS-21.png" alt="WSUS Configure" width="450" height="450" class="wsus-img">
+        
+        <p>Test üçün <strong>WSUS Serverimizdən Update</strong>-ləri <strong>Client</strong>-lara yükləyək. Gördüyümüz kimi artıq <strong>Client</strong> cihazımız <strong>Update</strong> aldı <strong>WSUS</strong> üzərindən.</p>
+        <img src="wsus-photos/WSUS-22.png" alt="WSUS Configure" width="450" height="450" class="wsus-img"><img src="wsus-photos/WSUS-23.png" alt="WSUS Configure" width="450" height="450" class="wsus-img"><img src="wsus-photos/WSUS-24.png" alt="WSUS Configure" width="400" height="400" class="wsus-img">
+        
+        <h1>Nəticə</h1>
+        <p>Bu məqaləmdə <strong>WSUS Server-in</strong> necə yükləndiyindən qurulduğundan və işlədiyindən danışdım. Bir şirkət düşünsək və burda 100 cihaz nəzərdə tutaq bunlar 
+            hamısı eyni anda özləri cihazı <strong>Update</strong> etməyə çalışsalar Şəbəkə çökə bilər və ya çökməsə belə çox yüklənər. 
+            WSUS Server burda bütün <strong>Update-ləri Micorosoft Update Service</strong> üzərindən özünə yükləyir və daha sonra tək cihazdan hazır 
+            <strong>Update</strong> paketlərini bütün cihazlara şəbəkəni yükə salmadan göndərir.</p>
+            <h2>Əlavə Sual və Məlumat üçün Aşağıdaki Media Vasitələri ilə Əlaqə Saxlaya Bilərsiniz.</h2>
+        <!-- Modal yapısı -->
+        <div id="myModal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="img01">
+            <div id="caption"></div>
+        </div>
+    </div>
+    </head>
+    <!-- Əlaqə və Sosial Medya Bölməsi -->
+    <section id="Əlaqə" class="section">
+    <section id="Əlaqə" class="wrapper"></section>
+        <h2>Əlaqə və Sosial media hesablarım:</h2>
+        <title>Sosyal Medya Hover Efekti</title>
+        <!-- Font Awesome bağlantısı -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <a href="tel:+994006845816" class="icon" target="_blank"><i class="fa-solid fa-phone" style="font-size: 28px;"></i></a>
+            <a href="mailto:karimovhvusal@gmail.com" class="icon" target="_blank"><i class="fa-solid fa-envelope" style="font-size: 28px;"></i></a>
+            <a href="https://www.instagram.com/_karimovh_846/" class="icon" target="_blank"><i class="fa-brands fa-instagram" style="font-size: 28px;"></i></a>
+            <a href="https://www.linkedin.com/in/vusal-karimovh" class="icon" target="_blank"><i class="fa-brands fa-linkedin-in" style="font-size: 28px;"></i></a>
+        </div>
+    </section>
+</body><footer><h3 class="footer-sol">2025 © Vüsal Kərimov.</h3><h3 class="footer-sag">Sayt Vüsal Kərimov Tərəfindən Hazırlanmışdır.</h3></footer>
+</html>
