@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Poppins', serif;
 }
 
 /* Genel Stil */
@@ -39,34 +40,54 @@ body {
     border-radius: 11px; /* Kenarları oval yap */
 }
 
-/* bura yazı və logonun olduğu hissədir */
-.logo img {
-    height: 50px; /* Logonun yüksekliğini ayarlayın */
-    width: auto;  /* Genişliğin otomatik olarak ayarlanmasını sağlar */
-    vertical-align: middle; /* Logonun metinle aynı hizaya gelmesini sağlar */
-    margin-right: 20px; /* Logonun metinden biraz uzaklaşmasını sağlar */
-}
-
 .no-color-change {
     color: inherit; /* Rengi üst elementten miras al */
     text-decoration: none; /* Alt çizgiyi kaldır */
+    text-transform: uppercase;
+    color: #757575;
+    font-family: 'Syne', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
 }
 
 .no-color-change:hover,
 .no-color-change:focus,
 .no-color-change:active {
-    color: inherit; /* Hover, focus veya aktif durumda rengin değişmemesini sağla */
-    text-decoration: none; /* Hover, focus veya aktif durumda alt çizginin görünmemesini sağla */
+    color: none; /* Hover, focus veya aktif durumda rengin değişmemesini sağla */
+    text-decoration: none; /* Hover, focus veya aktif durumda alt çizginin görünmemesi */
 }
 
 /* Logo ve yazı (navigasyon bölümü)*/
 .logo {
     display: flex;
-    align-items: center; /* Logoyu ve metni aynı hizaya getirir */
-    font-size: 32px;
-    font-weight: bold;
-    color: #ffffff;
-}
+    align-items: center;
+  }
+  
+  .logo a {
+    font-size: 30px;
+    font-family: 'Syne', sans-serif; /* Yerel Syne fontunu kullan */
+    font-optical-sizing: auto;
+    font-weight: 700; /* Kalın (Bold) için */
+    font-style: normal;
+    color: #9a9a9a;
+    text-transform: uppercase;
+  }
+  
+  /* bura yazı və logonun olduğu hissədir */
+  .logo img {
+      height: 50px; /* Logonun yüksekliğini ayarlayın */
+      width: auto;  /* Genişliğin otomatik olarak ayarlanmasını sağlar */
+      vertical-align: middle; /* Logonun metinle aynı hizaya gelmesini sağlar */
+      margin-right: 20px; /* Logonun metinden biraz uzaklaşmasını sağlar */
+  }
+
+  @font-face {
+    font-family: 'Syne';
+    src: url('logo_icon/Syne-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
 
 /* Menü Linkleri */
 .nav-links {
