@@ -93,8 +93,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     function resizeModalContent() {
         if (modal.classList.contains('show')) {
-            modalContent.style.width = '80%';
-            modalContent.style.maxWidth = '700px';
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            const modalMaxWidth = Math.min(viewportWidth * 0.8, 700);
+            const modalMaxHeight = Math.min(viewportHeight * 0.8, 700);
+
+            modalImg.style.width = `${modalMaxWidth}px`;
+            modalImg.style.height = `${modalMaxHeight}px`;
         }
     }
 
@@ -106,4 +111,16 @@ document.addEventListener('DOMContentLoaded', () => {
             resizeModalContent();
         }
     });
+
+    // Modal açıldığında boyutlandırma işlevini çağır
+    images.forEach(function (img) {
+        img.addEventListener("click", function () {
+            modal.style.display = "block"; // Modalı görünür yap
+            modal.classList.add("show"); // Sadece .show ekleyerek CSS'e bırakıyoruz
+            modalImg.src = this.src;
+            resizeModalContent(); // Modal açıldığında boyutlandırma işlevini çağır
+        });
+    });
+
+    // ...existing code...
 });
