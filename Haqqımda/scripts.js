@@ -72,38 +72,4 @@ document.addEventListener('DOMContentLoaded', () => {
         heroContent.style.transition = 'opacity 2s';
         heroContent.style.opacity = 1;
     }, 500);
-
-    // Modal functionality
-    const modal = document.getElementById("myModal");
-    const modalImg = document.getElementById("img01");
-    const captionText = document.getElementById("caption");
-
-    document.querySelectorAll(".product-item img, .service-item img").forEach(img => {
-        img.onclick = function() {
-            modal.style.display = "flex";
-            setTimeout(() => {
-                modal.classList.add("show");
-            }, 10); // Kısa bir gecikme ekleyerek geçişin çalışmasını sağla
-            modalImg.src = this.src;
-            captionText.innerHTML = this.alt;
-        }
-    });
-
-    const span = document.getElementsByClassName("close")[0];
-
-    span.onclick = function() {
-        modal.classList.remove("show");
-        setTimeout(() => {
-            modal.style.display = "none";
-        }, 400); // Geçiş süresiyle uyumlu olmalı
-    }
-
-    modal.onclick = function(event) {
-        if (event.target === modal) {
-            modal.classList.remove("show");
-            setTimeout(() => {
-                modal.style.display = "none";
-            }, 400); // Geçiş süresiyle uyumlu olmalı
-        }
-    }
 });
