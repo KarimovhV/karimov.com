@@ -62,65 +62,75 @@ document.addEventListener('DOMContentLoaded', () => {
         heroContent.style.opacity = 1;
     }, 500);
 
-    // Modal ve kapatma butonu seçimi
-    var modal = document.querySelector(".modal");
-    var modalImg = document.querySelector(".modal-content");
-    var closeModal = document.querySelector(".close");
-    var images = document.querySelectorAll(".wsus-img"); // Doğru sınıf: .wsus-img
+// Modal elemanlarını seç
+const modal = document.getElementById("myModal");
+const modalImg = document.getElementById("img01");
+const span = document.getElementsByClassName("close")[0];
 
-    images.forEach(function (img) {
-        img.addEventListener("click", function () {
-            modal.style.display = "block"; // Modalı görünür yap
-            modal.classList.add("show"); // Sadece .show ekleyerek CSS'e bırakıyoruz
-            modalImg.src = this.src;
-        });
-    });
+// Tüm görselleri seç
+const images = document.querySelectorAll(".container img");
 
-    closeModal.addEventListener("click", function () {
+// Modal açma fonksiyonu
+images.forEach(img => {
+    img.onclick = function() {
+        modal.style.display = "flex";
+        modalImg.src = this.src;
+        setTimeout(() => {
+            modal.classList.add("show");
+            resizeModalContent(); // Modal açıldığında boyutlandırma
+        }, 10);
+    };
+});
+
+// Modal kapatma (çarpı butonu)
+span.onclick = function() {
+    modal.classList.remove("show");
+    setTimeout(() => {
+        modal.style.display = "none";
+    }, 400);
+};
+
+// Modal dışına tıklayınca kapatma
+modal.onclick = function(event) {
+    if (event.target === modal) {
         modal.classList.remove("show");
         setTimeout(() => {
             modal.style.display = "none";
-        }, 300);
-    });
-
-    modal.addEventListener("click", function (event) {
-        if (event.target === modal) {
-            modal.classList.remove("show");
-            setTimeout(() => {
-                modal.style.display = "none";
-            }, 300);
-        }
-    });
-    function resizeModalContent() {
-        if (modal.classList.contains('show')) {
-            const viewportWidth = window.innerWidth;
-            const viewportHeight = window.innerHeight;
-            const modalMaxWidth = Math.min(viewportWidth * 0.8, 700);
-            const modalMaxHeight = Math.min(viewportHeight * 0.8, 700);
-
-            modalImg.style.width = `${modalMaxWidth}px`;
-            modalImg.style.height = `${modalMaxHeight}px`;
-        }
+        }, 400);
     }
+};
 
-    window.addEventListener('resize', resizeModalContent);
+// Görseli yeniden boyutlandırma fonksiyonu
+function resizeModalContent() {
+    if (modal.classList.contains("show")) {
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        const maxWidth = Math.min(viewportWidth * 0.8, 1000);
+        const maxHeight = Math.min(viewportHeight * 0.8, 1000);
 
-    // Modal açıldığında boyutlandırma işlevini çağır
-    modal.addEventListener('transitionend', function() {
-        if (modal.classList.contains('show')) {
-            resizeModalContent();
+        const img = new Image();
+        img.src = modalImg.src;
+        const naturalWidth = img.naturalWidth;
+        const naturalHeight = img.naturalHeight;
+
+        let newWidth = naturalWidth;
+        let newHeight = naturalHeight;
+
+        if (naturalWidth > maxWidth || naturalHeight > maxHeight) {
+            const widthRatio = maxWidth / naturalWidth;
+            const heightRatio = maxHeight / naturalHeight;
+            const scale = Math.min(widthRatio, heightRatio);
+
+            newWidth = naturalWidth * scale;
+            newHeight = naturalHeight * scale;
         }
-    });
 
-    // Modal açıldığında boyutlandırma işlevini çağır
-    images.forEach(function (img) {
-        img.addEventListener("click", function () {
-            modal.style.display = "block"; // Modalı görünür yap
-            modal.classList.add("show"); // Sadece .show ekleyerek CSS'e bırakıyoruz
-            modalImg.src = this.src;
-            resizeModalContent(); // Modal açıldığında boyutlandırma işlevini çağır
-        });
-    });
+        modalImg.style.width = `${newWidth}px`;
+        modalImg.style.height = `${newHeight}px`;
+        modalImg.style.maxWidth = "100%";
+        modalImg.style.maxHeight = "100%";
+    }
+}
 
-    // ...existing code...
+window.addEventListener("resize", resizeModalContent);
 });
